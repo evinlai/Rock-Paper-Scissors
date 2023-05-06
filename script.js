@@ -1,7 +1,8 @@
+//generates random numbers and assign it value betweek choices (rock, paper, scissors)
+
 function getComputerChoice() {
     
     rnd = Math.round(Math.random() * 10);
-    // console.log('Number generated is : ', rnd);
     if (rnd === 1 || rnd === 4 || rnd ===7) {
         choiceIs = 'paper';
         }
@@ -16,16 +17,16 @@ function getComputerChoice() {
     }
     return choiceIs;
 }
-
+//tests and confirms who wins the round
 function playRound(playerSelection, computerSelection) {
-    console.log(playerSelection,computerSelection);
+    console.log("You chose: ", playerSelection, "\nCOM chose: ", computerSelection);
 
      if (playerSelection === 'paper') {
          if (computerSelection === 'paper'){
-            result = 'draw'
+            result = 'draw';
          }
          else if (computerSelection === 'rock') {
-            result = 'win'
+            result = 'win';
          }
          else if (computerSelection === 'scissors'){
             result = 'lost';
@@ -33,10 +34,10 @@ function playRound(playerSelection, computerSelection) {
      }
      else if (playerSelection === 'rock') {
         if (computerSelection === 'paper'){
-            result = 'lost'
+            result = 'lost';
          }
          else if (computerSelection === 'rock') {
-            result = 'draw'
+            result = 'draw';
          }
          else if (computerSelection === 'scissors'){
             result = 'win';
@@ -44,31 +45,69 @@ function playRound(playerSelection, computerSelection) {
      }
      else if (playerSelection === 'scissors') {
         if (computerSelection === 'paper'){
-            result = 'win'
+            result = 'win';
          }
          else if (computerSelection === 'rock') {
-            result = 'lost'
+            result = 'lost';
          }
          else if (computerSelection === 'scissors'){
             result = 'draw';
          }
-     }
+     } 
+    
      return result; 
 }
-
- function compareWithCom(playerSelection) {
-     console.log(playerSelection, computerSelection)
-     if (playerSelection === computerSelection) {
-         console.log('nobody wins, try again!')
-     }
- }
-
-
+// runs 5 rounds and displays player and  COM scores
 function game() {
-    const playerSelection = prompt('Please enter your choice:' );
-    const computerSelection= getComputerChoice();
-    console.log('You' ,playRound(playerSelection, computerSelection))
+
+    let playerScore = 0;
+    let comScore = 0;
+
+for (i=0; i<=4; i++){
+    const playerSelections = prompt('Please enter your choice:' );
+    const computerSelection= getComputerChoice();  
+    const playerSelection = playerSelections.toLocaleLowerCase();
     
+    
+
+
+        if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") 
+            {
+            roundResult = playRound(playerSelection, computerSelection);
+                if (roundResult === "win") {
+                    playerScore = playerScore + 1;
+                    console.log("CURRENT SCORE \nYour score is: ", playerScore, "\nCOM score is: ", comScore);    
+                }
+                else if (roundResult === "lost" ){
+                    comScore = comScore + 1;
+                    console.log("CURRENT SCORE \nYour score is: ", playerScore, "\nCOM score is: ", comScore);
+                }
+                else if (roundResult === "draw") {
+
+                    console.log("It's a DRAW! \nCURRENT SCORE \nYour score is: ", playerScore, "\nCOM score is: ", comScore);  
+                }
+            }
+        else {
+            i = i-1;
+            console.log("Please choose between rock, paper and scissors only.") /* when user enters invalid choice */
+        }
+    }
+    if (playerScore >comScore){
+        winner = "Player";
+    }
+    else if(playerScore < comScore) {
+        winner = "COM";
+    }
+    else {
+        winner = "None";
+    }
+
+    console.log("Game ends with: \n", "\nYour score is:", playerScore, "\nCOM score is:", comScore, "\n\nThe Winner is" ,winner);
+     
 }
+// start game 
+console.log(game())
+
+
 
 
