@@ -65,7 +65,7 @@ function game() {
 
 for (i=0; i<=4; i++){
     const playerSelections = prompt('Please enter your choice:' );
-    const computerSelection= getComputerChoice();  
+    const computerSelection = getComputerChoice();  
     const playerSelection = playerSelections.toLocaleLowerCase();
     
     
@@ -103,11 +103,9 @@ for (i=0; i<=4; i++){
     }
 
     console.log("Game ends with: \n", "\nYour score is:", playerScore, "\nCOM score is:", comScore, "\n\nThe Winner is" ,winner);
-     
+ return winner;    
 }
 // start game 
 console.log(game())
-
-
 
 
