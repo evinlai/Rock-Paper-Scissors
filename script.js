@@ -66,32 +66,39 @@ function game() {
 for (i=0; i<=4; i++){
     const playerSelections = prompt('Please enter your choice:' );
     const computerSelection = getComputerChoice();  
-    const playerSelection = playerSelections.toLocaleLowerCase();
-    
-    
-
+    const playerSelection = playerSelections.toLocaleLowerCase();  
 
         if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") 
             {
             roundResult = playRound(playerSelection, computerSelection);
                 if (roundResult === "win") {
                     playerScore = playerScore + 1;
+                    console.log("YOU WIN!");
                     console.log("CURRENT SCORE \nYour score is: ", playerScore, "\nCOM score is: ", comScore);    
                 }
                 else if (roundResult === "lost" ){
                     comScore = comScore + 1;
+                    console.log("YOU LOST!");
                     console.log("CURRENT SCORE \nYour score is: ", playerScore, "\nCOM score is: ", comScore);
                 }
                 else if (roundResult === "draw") {
-
                     console.log("It's a DRAW! \nCURRENT SCORE \nYour score is: ", playerScore, "\nCOM score is: ", comScore);  
                 }
             }
+        
         else {
             i = i-1;
             console.log("Please choose between rock, paper and scissors only.") /* when user enters invalid choice */
         }
     }
+// function calls and validate the winner and displays 
+    getWinner(playerScore, comScore);
+    
+}
+function getWinner(playerScore, comScore) {
+
+    console.log("Game ends with: \n", "\nYour score is:", playerScore, "\nCOM score is:", comScore); 
+
     if (playerScore >comScore){
         winner = "Player";
     }
@@ -102,9 +109,12 @@ for (i=0; i<=4; i++){
         winner = "None";
     }
 
-    console.log("Game ends with: \n", "\nYour score is:", playerScore, "\nCOM score is:", comScore, "\n\nThe Winner is" ,winner);
- return winner;    
+    
+    console.log("\n\nThe Winner is" , winner);
+    return winner;    
+
 }
+
 // start game 
 console.log(game())
 
