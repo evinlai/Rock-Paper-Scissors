@@ -107,6 +107,8 @@ function getWinner(playerScore, comScore) {
     }
     else {
         winner = "None";
+        console.log("\n\nNobody Wins it's a DRAW!");
+        return winner;
     }
 
     
