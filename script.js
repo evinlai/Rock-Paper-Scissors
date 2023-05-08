@@ -63,7 +63,6 @@ function game() {
     let playerScore = 0;
     let comScore = 0;
 
-for (i=0; i<=4; i++){
     const playerSelections = prompt('Please enter your choice:' );
     const computerSelection = getComputerChoice();  
     const playerSelection = playerSelections.toLocaleLowerCase();  
@@ -90,7 +89,7 @@ for (i=0; i<=4; i++){
             i = i-1;
             console.log("Please choose between rock, paper and scissors only.") /* when user enters invalid choice */
         }
-    }
+    
 // function calls and validate the winner and displays 
     getWinner(playerScore, comScore);
     
