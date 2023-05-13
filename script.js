@@ -60,16 +60,21 @@ function playRound(playerSelection, computerSelection) {
 // runs 5 rounds and displays player and  COM scores
 function game() {
 
-    let playerScore = 0;
-    let comScore = 0;
+   
+    let playerSelection = "";
+    
+     
+    const player = document.querySelector('.choices');
+    player.addEventListener('click', e=>{
+        // console.log(e.target);
+        rps = e.target;
+        playerSelection = rps.value;
+        let computerSelection = getComputerChoice();  
+        showPlayerUI(playerSelection);
+        showComUI(computerSelection);
+        
 
-    const playerSelections = prompt('Please enter your choice:' );
-    const computerSelection = getComputerChoice();  
-    const playerSelection = playerSelections.toLocaleLowerCase();  
-
-        if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") 
-            {
-            roundResult = playRound(playerSelection, computerSelection);
+        roundResult = playRound(playerSelection, computerSelection);
                 if (roundResult === "win") {
                     playerScore = playerScore + 1;
                     console.log("YOU WIN!");
@@ -82,14 +87,13 @@ function game() {
                 }
                 else if (roundResult === "draw") {
                     console.log("It's a DRAW! \nCURRENT SCORE \nYour score is: ", playerScore, "\nCOM score is: ", comScore);  
-                }
-            }
+                }        
+        showScoreUI(playerScore, comScore);        
+    })
+
+
         
-        else {
-            i = i-1;
-            console.log("Please choose between rock, paper and scissors only.") /* when user enters invalid choice */
-        }
-    
+            
 // function calls and validate the winner and displays 
     getWinner(playerScore, comScore);
     
@@ -115,8 +119,24 @@ function getWinner(playerScore, comScore) {
     return winner;    
 
 }
+function showPlayerUI(playerSelection) {
+    let res = document.querySelector('#plyChoice');
+    res.innerHTML = playerSelection;
+
+}
+function showComUI(computerSelection) {
+    let res = document.querySelector('#comChoice');
+    res.innerHTML = computerSelection;
+}
+function showScoreUI(playerScore, comScore) {
+pscore = document.querySelector('.plysc');
+cscore = document.querySelector('.comsc');
+pscore.innerHTML = playerScore;
+cscore.innerHTML = comScore;
+}
 
 // start game 
-console.log(game())
 
+let playerScore = 0;
+let comScore = 0;
 
