@@ -15,8 +15,42 @@ function getComputerChoice() {
     else {
         getComputerChoice();
     }
+ 
     return choiceIs;
 }
+
+
+
+
+
+
+
+
+
+
+
+function getPlayerSelection() {
+    
+       
+    start.close(); 
+    player.show();
+
+    document.getElementById('optrock').addEventListener('click', function() {
+        player1.choice = "rock";
+    });
+    document.getElementById('optpaper').addEventListener('click', plychoice);
+    document.getElementById('optscissors').addEventListener('click', plychoice);
+
+    return;
+    
+}
+
+
+
+
+
+
+
 //tests and confirms who wins the round
 function playRound(playerSelection, computerSelection) {
     console.log("You chose: ", playerSelection, "\nCOM chose: ", computerSelection);
@@ -57,23 +91,13 @@ function playRound(playerSelection, computerSelection) {
     
      return result; 
 }
-// runs 5 rounds and displays player and  COM scores
+
 function game() {
-
-   
-    let playerSelection = "";
-    
-     
-    const player = document.querySelector('.choices');
-    player.addEventListener('click', e=>{
-        // console.log(e.target);
-        rps = e.target;
-        playerSelection = rps.value;
-        let computerSelection = getComputerChoice();  
-        showPlayerUI(playerSelection);
-        showComUI(computerSelection);
+    let playerSelection = getPlayerSelection();
+        // let computerSelection = getComputerChoice();  
+    showPlayerUI(playerSelection);
+    showComUI(com.choice);
         
-
         roundResult = playRound(playerSelection, computerSelection);
                 if (roundResult === "win") {
                     playerScore = playerScore + 1;
@@ -89,15 +113,13 @@ function game() {
                     console.log("It's a DRAW! \nCURRENT SCORE \nYour score is: ", playerScore, "\nCOM score is: ", comScore);  
                 }        
         showScoreUI(playerScore, comScore);        
-    })
-
-
-        
+         
             
 // function calls and validate the winner and displays 
-    getWinner(playerScore, comScore);
-    
+         getWinner(playerScore, comScore);
+
 }
+
 function getWinner(playerScore, comScore) {
 
     console.log("Game ends with: \n", "\nYour score is:", playerScore, "\nCOM score is:", comScore); 
@@ -121,22 +143,80 @@ function getWinner(playerScore, comScore) {
 }
 function showPlayerUI(playerSelection) {
     let res = document.querySelector('#plyChoice');
+    let res2 = document.querySelector(".imgplayer");
     res.innerHTML = playerSelection;
+    if (playerSelection === "paper") {
+        res2.src= './images/player paper.png';
+    }
+    else if (playerSelection === "rock") {
+        res2.src = './images/player rock.png';
+    }
+    else if  (playerSelection === "scissors") {
+        res2.src = '/images/player scissors.png';
+    }
+
 
 }
 function showComUI(computerSelection) {
     let res = document.querySelector('#comChoice');
+    res2 = document.querySelector('.imgcom')
     res.innerHTML = computerSelection;
+    if (computerSelection === "paper") {
+        res2.src= './images/com paper.png';
+    }
+    else if (computerSelection === "rock") {
+        res2.src = './images/com rock.png';
+    }
+    else if  (computerSelection === "scissors") {
+        res2.src = '/images/com scissors.png';
+    }
 }
 function showScoreUI(playerScore, comScore) {
 pscore = document.querySelector('.plysc');
 cscore = document.querySelector('.comsc');
 pscore.innerHTML = playerScore;
 cscore.innerHTML = comScore;
+if(playerScore === 5){
+    pscore.innerHTML = 'Winner';
+    return playerScore;
+
+    }
+else if (comScore === 5) {
+    cscore.innerHTML  = "Winner";
+    return comScore;
+
+    }
 }
+// function showComImg(computerSelection) {
+//     const comSelct = document.getElementById('#comPick');
+//     if (computerSelection === 'paper'){
+//         comSelct.setAttribute("src", "images/com paper.png");
+//     }
+// }
+
 
 // start game 
+let com = { name: "Computer",
+            score: 0,
+            choice: getComputerChoice()
+          };
+let player1 = {
+            name: "Player",
+            score: 0,
+            
+};
 
 let playerScore = 0;
 let comScore = 0;
+let spc = "";
+const start = document.getElementById('init');  // dialogbox name
+const round = document.querySelector('#roundRes');
+const strtgame = document.getElementById('playbtn');
+
+//prompts dialog with start game button
+start.showModal();
+
+// document.querySelector("opt-panel").addEventListener('click', game)
+//initialize game upon clicking
+strtgame.addEventListener('click', game);
 
