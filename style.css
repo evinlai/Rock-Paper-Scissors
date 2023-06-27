@@ -1,7 +1,7 @@
 body {
     
     margin: 0;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(241, 232, 232);
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
     box-sizing: border-box;
@@ -34,20 +34,21 @@ h2 {
     align-items: center;
     background-color: rgb(241, 232, 232);
     width: 100%;
-    height: 100vh;
+    height: auto;
     
     /* border-left: solid 1px;
     border-right: solid 1px; */
 }
 
 .start-panel {
-        height: 0%;
+    height: 0%;
 
     width: 100%;
     flex-direction: column;
     display: flex;
     align-items: center;
     align-content: center;
+    
     /* pointer-events: all; */
     
 
@@ -62,10 +63,12 @@ h2 {
 .start-panel>p {
     color: black;   
     font-size: 20px;
+    
 }
 .start-panel>button {
     height: 60px;
     width: 200px;
+
 
 }
 
@@ -119,6 +122,7 @@ justify-content: center;
 align-items: center;
 
 }
+
 .com-panel {
     display: flex;
     justify-content: space-between;
@@ -127,6 +131,7 @@ align-items: center;
 .player-panel {
     display: flex;
     justify-content: space-between;
+    
     /* margin-right: 20%;
     margin: ; */
 }
@@ -135,6 +140,11 @@ align-items: center;
     flex-direction: column;
     justify-content: center;
 }
+.comScr {
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+}
 /* .score-panel {
     display: flex;
     justify-content: center;
@@ -142,20 +152,34 @@ align-items: center;
 
 .scrFont{
     font-family: Arial, Helvetica, sans-serif;
-    font-size:  5em;
+    font-size:  3em;
 }
 .choices {
     display: flex;
     justify-content: space-between;
 }
+.start-panel>button {
+    margin: 20px;
+}
 
 @media (max-width: 600px) {
-    .header {
+    body {
         display: flex;
         flex-direction: column;
-      
+        
+        align-items:flex-end ;
+        height: 100vh;
+        
     }
-    h1 {
-        justify-items: center;
+    
+    .header {
+        display: flex;
+        flex-direction: row;
+        
+        align-items:center;
+        font-size: small;
+    }
+    .opt-panel>p {
+        font-size: 14px;
     }
 }

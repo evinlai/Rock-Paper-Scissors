@@ -18,7 +18,6 @@ function getComputerChoice() {
     
 }
 
-
 function showComUI() {
     let res = document.querySelector('#comChoice');
     res2 = document.querySelector('.imgcom')
@@ -36,13 +35,13 @@ function showComUI() {
 
 function getPlayerChoice () {
 
+bannerEl.innerHTML = 'Pick your choice!';  
     
-    // disables the start button
-enableOptBtns();
-// "resetScore();"
+enableOptBtns(); // disables the start button
+
 showScoreUI();
-// showScoreUI(); remove this and creata a function that initializes the GUI and scoring
-setBothOptToRock();
+
+setBothOptToRock(); // calls function to set both player gui choice as rock
 
 
 }
@@ -54,7 +53,6 @@ function setBothOptToRock() {
   coimg.src = './images/com rock.png';
   plimg.src = '/images/player rock.png';
 }
-
 
 function showPlayerUI() {
     let res = document.querySelector('#plyChoice');
@@ -71,51 +69,51 @@ function showPlayerUI() {
     }
 }
 
-
 function playRound() {
-    
-   
-    
-
     console.log("You chose: ", player1.choice, "\nCOM chose: ", com.choice);
 
      if (player1.choice === 'paper') {
          if (com.choice === 'paper'){
             result = 'draw';
+            bannerEl.innerHTML = 'It\'s a draw!';
          }
          else if (com.choice === 'rock') {
             result = 'win';
+            bannerEl.innerHTML = 'You win this round, click again for next round!';
          }
          else if (com.choice === 'scissors'){
             result = 'lost';
+            bannerEl.innerHTML = 'You lose this round, try again!';
          }
      }
      else if (player1.choice === 'rock') {
         if (com.choice === 'paper'){
             result = 'lost';
+            bannerEl.innerHTML = 'You lose this round, try again!';
          }
          else if (com.choice === 'rock') {
             result = 'draw';
+            bannerEl.innerHTML = 'Its a draw!'
          }
          else if (com.choice === 'scissors'){
             result = 'win';
+            bannerEl.innerHTML = 'You win this round, click again for next round!';
          }
      }
      else if (player1.choice === 'scissors') {
         if (com.choice === 'paper'){
             result = 'win';
+            bannerEl.innerHTML = 'You win this round, click again for next round!';
          }
          else if (com.choice === 'rock') {
             result = 'lost';
+            bannerEl.innerHTML = 'You lose this round, try again!';
          }
          else if (com.choice === 'scissors'){
             result = 'draw';
+            bannerEl.innerHTML = 'Its a draw!';
          }
      } 
-
-
-    console.log('You', result);
-
 
     if (result === 'win') {
         player1.score = player1.score + 1;
@@ -138,16 +136,15 @@ function showScoreUI() {
     
     if(player1.score >= 5){
         pscore.innerHTML = 'Winner';
+        bannerEl.innerHTML = 'You Won the game! click "START" button to play again.'
         disableOptBtns();
         resetScore();
-        
-    
         }
     else if (com.score >= 5) {
         cscore.innerHTML  = "Winner";
         disableOptBtns();
         resetScore();
-        
+        bannerEl.innerHTML = 'You Lost the game! Click "START" button to play again.'
         }
 }
 
@@ -169,11 +166,12 @@ function resetScore() {
     player1.score = 0;
     com.score = 0;
 }
-// const beginGame = document.getElementById('init'); 
+
 let startbtn = document.querySelector('#playbtn');
 let rockbtn = document.querySelector('#rockopt');
 let paperbtn = document.querySelector('#paperopt');
 let scissorsbtn = document.querySelector('#scissorsopt');
+let bannerEl = document.querySelector('.banner');
 
 const playe = document.getElementById('player');
 let pChoiceIs = document.querySelector('#opts');
@@ -186,27 +184,22 @@ var player1 = {
             score: 0,
             choice: "none"
           };
-
-
-
-// beginGame.showModal();          
+      
 document.querySelector('#playbtn').addEventListener('click', getPlayerChoice);
 
-disableOptBtns();
+disableOptBtns(); 
 
 player1.score = 0;
 com.score = 0;
 
-
-
 pChoiceIs.addEventListener('click', e=>{
-    getComputerChoice();
+    
     getVal = e.target;
     player1.choice = getVal.value;
+    if (player1.choice != undefined) {
+    getComputerChoice();
     showPlayerUI();
-    
     playRound();
-    
-    
+    }   
 });
 
