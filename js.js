@@ -29,7 +29,7 @@ function showComUI() {
         res2.src = './images/com rock.png';
     }
     else if  (com.choice === "scissors") {
-        res2.src = '/images/com scissors.png';
+        res2.src = './images/com scissors.png';
     }
 }
 
@@ -51,7 +51,7 @@ function setBothOptToRock() {
   const plimg = document.querySelector('.imgplayer');
   
   coimg.src = './images/com rock.png';
-  plimg.src = '/images/player rock.png';
+  plimg.src = './images/player rock.png';
 }
 
 function showPlayerUI() {
@@ -59,13 +59,13 @@ function showPlayerUI() {
     let res2 = document.querySelector('.imgplayer');
     res.innerHTML = player1.choice;
     if (player1.choice === "paper") {
-        res2.src= '/images/player paper.png';
+        res2.src= './images/player paper.png';
     }
     else if (player1.choice === "rock") {
-        res2.src = '/images/player rock.png';
+        res2.src = './images/player rock.png';
     }
     else if  (player1.choice === "scissors") {
-        res2.src = '/images/player scissors.png';
+        res2.src = './images/player scissors.png';
     }
 }
 
